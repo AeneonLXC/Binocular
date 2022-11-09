@@ -34,15 +34,14 @@ if err != sl.ERROR_CODE.SUCCESS:
 
 #创建mat类
 image = sl.Mat()
-
 while 1:
     #时间戳同步
     if zed.grab(runtime) == sl.ERROR_CODE.SUCCESS:
-        
+        #获取图像数据 可选择左右视图
         zed.retrieve_image(image, sl.VIEW.LEFT_UNRECTIFIED )
         cv.imshow("ZED", image.get_data())
     if cv.waitKey(1) & 0xFF == ord('q'):
-        zed.disable_recording()
-        cv.destroyAllWindows()
         break
 cv.destroyAllWindows()
+zed.disable_recording()
+zed.close()
