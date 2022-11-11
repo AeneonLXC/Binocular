@@ -79,11 +79,14 @@ while 1:
 
     if zed.grab(runtime) == sl.ERROR_CODE.SUCCESS:
         #获取图像数据 可选择左右视图 LEFT or RIGHT
-        value = cv.getTrackbarPos("BRIGHTNESS", "ZED")
-        zed.set_camera_settings(sl.VIDEO_SETTINGS.BRIGHTNESS, value)
-        zed.set_camera_settings(sl.VIDEO_SETTINGS.CONTRAST, value)
-        zed.set_camera_settings(sl.VIDEO_SETTINGS.SATURATION, value)
-        zed.set_camera_settings(sl.VIDEO_SETTINGS.SHARPNESS, value)
+        BRIGHTNESS = cv.getTrackbarPos("BRIGHTNESS", "ZED")
+        CONTRAST = cv.getTrackbarPos("CONTRAST", "ZED")
+        SATURATION = cv.getTrackbarPos("SATURATION", "ZED")
+        SHARPNESS = cv.getTrackbarPos("SHARPNESS", "ZED")
+        zed.set_camera_settings(sl.VIDEO_SETTINGS.BRIGHTNESS, BRIGHTNESS)
+        zed.set_camera_settings(sl.VIDEO_SETTINGS.CONTRAST, CONTRAST)
+        zed.set_camera_settings(sl.VIDEO_SETTINGS.SATURATION, SATURATION)
+        zed.set_camera_settings(sl.VIDEO_SETTINGS.SHARPNESS, SHARPNESS)
         zed.retrieve_image(image, sl.VIEW.SIDE_BY_SIDE)
         cv.imshow("ZED", image.get_data())
     if cv.waitKey(1) & 0xFF == ord('q'):
